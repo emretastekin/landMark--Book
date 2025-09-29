@@ -1,9 +1,12 @@
 package com.emretastekin.landmarkbook;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.emretastekin.landmarkbook.databinding.ActivityMainBinding;
@@ -36,10 +39,29 @@ public class MainActivity extends AppCompatActivity {
         landmarkArrayList.add(bridge);
 
 
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LandmarkAdapter landmarkAdapter = new LandmarkAdapter(landmarkArrayList);
+        binding.recyclerView.setAdapter(landmarkAdapter);
+
+
+
+        /*
+
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,
                 landmarkArrayList.stream().map(landmark -> landmark.name).collect(Collectors.toList())
         );
         binding.listView.setAdapter(arrayAdapter);
+
+        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                intent.putExtra("landmark", landmarkArrayList.get(i));
+                startActivity(intent);
+            }
+        });
+
+        */
 
 
 
